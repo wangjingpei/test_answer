@@ -1,7 +1,10 @@
 #include <stdlib.h>
 #include<string.h>
 #include "qh_vector.h"
-
+typedef struct Point{
+	int x, y;
+	char value;
+}Point;
 void chartest()
 {
 	qh::vector<char>vec;
@@ -34,21 +37,34 @@ void inttest()
 	int result[] = { 0, 1, 2, 20, 4, 5, 6, 7, 8, 100 };
 	for (int i(0); i < 10; i++)
 		assert(vec[i] == result[i]);
+	vec.resize(10);
 	assert(vec.size() == 10);
 
  
 }
-void doubletest()
+void structtest()
 {
+	 
+	qh::vector<Point>vec;
+	for (int i(0); i < 10; i++)
+	{
+		Point temp;
+		temp.x = i;
+		temp.y = i + 1;
+		temp.value = 'z';
+		vec.push_back(temp);
+	}
+	vec.pop_back();
+	assert(vec.size() == 9);
 	return;
 }
-int main(int argc, char* argv[])
+int main(int argc, char* argv[])s
 {
     //TODO 在这里添加单元测试，越多越好，代码路径覆盖率越全越好
     //TODO 单元测试写法请参考INIParser那个项目，不要写一堆printf，要用assert进行断言判断。
 	chartest();
 	inttest();
-	doubletest();
+	structtest();
      
 
 #ifdef WIN32

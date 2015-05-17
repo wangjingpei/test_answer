@@ -70,7 +70,7 @@ namespace qh
         void push_back(const T& element);
         void pop_back();
         size_t resize(size_t newsize,const T &x);
- 
+		size_t resize(size_t newsize );
         size_t reserve(size_t size);
         void clear();
         
@@ -120,7 +120,20 @@ namespace qh
 		return newsize;
 
 	}
+	template<class T>
+	size_t vector<T>::resize(size_t newsize )
+	{
+		if (newsize < size())
+		{
+			size_ = newsize;
 
+		}
+		else
+		for (size_t i = size(); i < newsize; i++)
+			push_back(T());
+		return newsize;
+
+	}
 	template<class T>
 	size_t vector<T>::reserve(size_t n)
 	{
